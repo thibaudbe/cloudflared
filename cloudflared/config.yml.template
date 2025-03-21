@@ -1,7 +1,10 @@
 tunnel: ${TUNNEL_ID}
-credentials-file: /etc/cloudflared/${TUNNEL_CRED_FILE}
-
+credentials-file: /home/nonroot/.cloudflared/cert.pem
 ingress:
+  - hostname: "${DOMAIN}"
+    service: ${TRAEFIK_SERVICE}
+  - hostname: "www.${DOMAIN}"
+    service: ${TRAEFIK_SERVICE}
   - hostname: "*.${DOMAIN}"
     service: ${TRAEFIK_SERVICE}
   - service: http_status:404
